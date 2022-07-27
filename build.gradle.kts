@@ -23,6 +23,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("com.github.jnr:jnr-unixsocket:0.38.17")
+}
+
 // Set the JVM language level used to compile sources and generate files - Java 11 is required since 2020.3
 kotlin {
     jvmToolchain {
@@ -107,5 +111,9 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+    }
+
+    buildSearchableOptions {
+        enabled = false
     }
 }
